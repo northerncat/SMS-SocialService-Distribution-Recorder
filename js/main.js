@@ -6,7 +6,7 @@ $(document).ready(function() {
         t = $(hook);
         t.each(function(){
             $(this).addClass('edit');
-            $(this).bind('contextmenu', function(e) {
+            $(this).bind('contextmenu', async function(e) {
                 // parse the remaining count from the table cell content
                 let remainingCount = parseInt(e.target.textContent);
                 // either the cell is the org name or is already zero
@@ -18,6 +18,10 @@ $(document).ready(function() {
                 let row = $(e.target.parentNode);
                 row.removeClass('text-muted');
                 row.removeClass('inactive');
+                if (remainingCount === 1) {
+                    await sleep(150);
+                    row.parent('tbody').prepend(row);
+                }
             });
             $(this).attr('oncontextmenu', 'return false;');
         });
@@ -50,5 +54,16 @@ $(document).on("click", ".edit", async function(e) {
         row.addClass('inactive');
         await sleep(150);
         row.parent('tbody').append(row);
+    }
+});
+
+// TODO: disallow webpage refresh so that the progress won't be lost - in general
+// not a good idea, so fix this in the future!
+$(document).on("keydown", function (e) {
+    if (e.key == "F5" || e.key == "F11" || 
+        (e.ctrlKey == true && (e.key == 'r' || e.key == 'R')) || 
+        e.keyCode == 116 || e.keyCode == 82) {
+
+               // e.preventDefault();
     }
 });
