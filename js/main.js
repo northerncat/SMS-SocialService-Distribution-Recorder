@@ -60,10 +60,9 @@ $(document).on("click", ".edit", async function(e) {
 // TODO: disallow webpage refresh so that the progress won't be lost - in general
 // not a good idea, so fix this in the future!
 $(document).on("keydown", function (e) {
-    if (e.key == "F5" || e.key == "F11" || 
-        (e.ctrlKey == true && (e.key == 'r' || e.key == 'R')) || 
+    if (e.key == "F5" || e.key == "F11" ||
+        (e.ctrlKey == true && (e.key == 'r' || e.key == 'R')) ||
         e.keyCode == 116 || e.keyCode == 82) {
-
                // e.preventDefault();
     }
 });
