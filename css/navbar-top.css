@@ -1,0 +1,17 @@
+/* Show it's not fixed to the top */
+body {
+  min-height: 75rem;
+}
+
+.table th {
+	text-align: center;
+	font-size: 18pt;
+}
+.table td {
+	text-align: center;
+	font-size: 18pt;
+}
+
+.table .inactive {
+	background-color: #EECCCC;
+}
