@@ -6,10 +6,12 @@ body {
 .table th {
 	text-align: center;
 	font-size: 18pt;
+	font-weight: 700;
 }
 .table td {
 	text-align: center;
 	font-size: 18pt;
+	font-weight: 700;
 }
 
 .table .inactive {
