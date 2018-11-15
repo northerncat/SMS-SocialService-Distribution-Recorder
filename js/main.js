@@ -1,32 +1,33 @@
 $(document).ready(function() {
     assignTableClasses('.table td');
 
-    // Declare the assign table classes function.
-    function assignTableClasses(hook){
-        t = $(hook);
-        t.each(function(){
-            $(this).addClass('edit');
-            $(this).bind('contextmenu', async function(e) {
-                // parse the remaining count from the table cell content
-                let remainingCount = parseInt(e.target.textContent);
-                // either the cell is the org name or is already zero
-                if (isNaN(remainingCount)) return;
-                // reduce the remaining count for the org by 1
-                remainingCount = Math.max(remainingCount + 1, 0);
-                e.target.textContent = remainingCount;
-
-                let row = $(e.target.parentNode);
-                row.removeClass('text-muted');
-                row.removeClass('inactive');
-                if (remainingCount === 1) {
-                    await sleep(150);
-                    row.parent('tbody').prepend(row);
-                }
-            });
-            $(this).attr('oncontextmenu', 'return false;');
-        });
-    }
 });
+
+// Declare the assign table classes function.
+function assignTableClasses(hook){
+    t = $(hook);
+    t.each(function(){
+        $(this).addClass('edit');
+        $(this).bind('contextmenu', async function(e) {
+            // parse the remaining count from the table cell content
+            let remainingCount = parseInt(e.target.textContent);
+            // either the cell is the org name or is already zero
+            if (isNaN(remainingCount)) return;
+            // reduce the remaining count for the org by 1
+            remainingCount = Math.max(remainingCount + 1, 0);
+            e.target.textContent = remainingCount;
+
+            let row = $(e.target.parentNode);
+            row.removeClass('text-muted');
+            row.removeClass('inactive');
+            if (remainingCount === 1) {
+                await sleep(150);
+                row.parent('tbody').prepend(row);
+            }
+        });
+        $(this).attr('oncontextmenu', 'return false;');
+    });
+}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
